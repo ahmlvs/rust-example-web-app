@@ -1,5 +1,6 @@
 use std::sync::Arc;
 
+pub mod adapters;
 pub mod app;
 pub mod di;
 pub mod id_provider;
