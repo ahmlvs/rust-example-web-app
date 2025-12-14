@@ -1,4 +1,4 @@
-# rust-example-web-app
+# rust-shortener-cqrs
 
 ## Start
 
@@ -25,5 +25,5 @@ cargo add tower
 
 ```bash
 cargo build --release
-./target/release/rust-example-web-app
+./target/release/rust-shortener-cqrs
 ```

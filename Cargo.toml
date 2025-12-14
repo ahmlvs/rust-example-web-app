@@ -1,5 +1,5 @@
 [package]
-name = "rust-example-web-app"
+name = "rust-shortener-cqrs"
 version = "0.1.0"
 edition = "2021"
 
