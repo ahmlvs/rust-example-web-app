@@ -1,1 +1,1 @@
-pub mod get_hello_world;
+pub mod get_full_url;

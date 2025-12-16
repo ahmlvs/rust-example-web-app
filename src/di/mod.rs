@@ -1,19 +1,31 @@
-use crate::app::query::get_hello_world::{GetHelloWorldQuery, Repository};
+use crate::{
+    app::{
+        command::create_short_url::{CreateShortUrlCommand, CreateShortUrlRepository},
+        query::get_full_url::{GetFullUrlQuery, GetFullUrlRepository},
+    },
+    id_provider::IDProvider,
+};
 
-pub struct Container<R>
+pub struct Container<I, R, Q>
 where
-    R: Repository,
+    I: IDProvider,
+    R: CreateShortUrlRepository,
+    Q: GetFullUrlRepository,
 {
-    pub hello_world_query: GetHelloWorldQuery<R>,
+    pub shorten_command: CreateShortUrlCommand<I, R>,
+    pub get_full_url_query: GetFullUrlQuery<Q>,
 }
 
-impl<R> Container<R>
+impl<I, R, Q> Container<I, R, Q>
 where
-    R: Repository,
+    I: IDProvider,
+    R: CreateShortUrlRepository,
+    Q: GetFullUrlRepository,
 {
-    pub fn new(repository: R) -> Self {
+    pub fn new(id_provider: I, repository: R, querier: Q) -> Self {
         Self {
-            hello_world_query: GetHelloWorldQuery::new(repository),
+            shorten_command: CreateShortUrlCommand::new(id_provider, repository),
+            get_full_url_query: GetFullUrlQuery::new(querier),
         }
     }
 }
