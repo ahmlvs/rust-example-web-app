@@ -2,6 +2,11 @@
 name = "rust-shortener-cqrs"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+authors = ["Andrejs Hmelovs"]
+description = "A URL shortener service implementing CQRS pattern and Clean Architecture"
+repository = "https://github.com/andrejshmelovs/rust-shortener-cqrs"
+keywords = ["url-shortener", "cqrs", "clean-architecture", "axum"]
 
 [dependencies]
 axum = "0.8.7"
