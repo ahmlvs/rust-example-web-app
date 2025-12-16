@@ -17,3 +17,12 @@ impl crate::app::command::create_short_url::CreateShortUrlRepository for InMemor
         Ok(())
     }
 }
+
+impl crate::app::query::get_full_url::GetFullUrlRepository for InMemoryRepository {
+    fn get(&self, id: &str) -> Result<String, String> {
+        match self.store.get(id) {
+            Some(url) => Ok(url.clone()),
+            None => Err("Not found".to_owned()),
+        }
+    }
+}

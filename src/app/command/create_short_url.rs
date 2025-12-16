@@ -4,7 +4,7 @@ pub trait CreateShortUrlRepository {
     fn save(&self, full_url: String, id: String) -> Result<(), String>;
 }
 
-pub struct CreateShortUrl<I, R>
+pub struct CreateShortUrlCommand<I, R>
 where
     I: IDProvider,
     R: CreateShortUrlRepository,
@@ -13,7 +13,7 @@ where
     repo: R,
 }
 
-impl<I, R> CreateShortUrl<I, R>
+impl<I, R> CreateShortUrlCommand<I, R>
 where
     I: IDProvider,
     R: CreateShortUrlRepository,
@@ -46,7 +46,7 @@ mod tests {
         let id_provider = id_provider::FakeIDProvider::new("123".to_owned());
         let store = Arc::new(DashMap::new());
         let repo = InMemoryRepository::new(store);
-        let command = CreateShortUrl::new(id_provider, repo);
+        let command = CreateShortUrlCommand::new(id_provider, repo);
 
         // When
         let result = command.execute("https://google.com".to_owned()).await;
@@ -61,7 +61,7 @@ mod tests {
         let idp = id_provider::NanoIDProvider;
         let store = Arc::new(DashMap::new());
         let repo = InMemoryRepository::new(store);
-        let command = CreateShortUrl::new(idp, repo);
+        let command = CreateShortUrlCommand::new(idp, repo);
 
         // When
         let result1 = command.execute("https://google.com".to_owned()).await;
@@ -77,7 +77,7 @@ mod tests {
         let idp = id_provider::NanoIDProvider;
         let store = Arc::new(DashMap::new());
         let repo = InMemoryRepository::new(store.clone());
-        let command = CreateShortUrl::new(idp, repo);
+        let command = CreateShortUrlCommand::new(idp, repo);
 
         // When
         let id = command
