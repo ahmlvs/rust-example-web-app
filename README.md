@@ -52,6 +52,7 @@ Server starts on `http://localhost:3001`
 ### Create Short URL
 
 **Request:**
+
 ```bash
 curl -X POST http://localhost:3001/ \
   -H 'Content-Type: application/json' \
@@ -59,6 +60,7 @@ curl -X POST http://localhost:3001/ \
 ```
 
 **Response:**
+
 ```json
 {
   "id": "abc123"
@@ -68,11 +70,13 @@ curl -X POST http://localhost:3001/ \
 ### Get Full URL
 
 **Request:**
+
 ```bash
 curl http://localhost:3001/abc123
 ```
 
 **Response:**
+
 ```json
 {
   "url": "https://google.com/"
@@ -82,6 +86,7 @@ curl http://localhost:3001/abc123
 ### Error Responses
 
 **Invalid URL:**
+
 ```bash
 # Request
 curl -X POST http://localhost:3001/ \
@@ -95,6 +100,7 @@ curl -X POST http://localhost:3001/ \
 ```
 
 **URL Not Found:**
+
 ```bash
 # Request
 curl http://localhost:3001/nonexistent
@@ -108,16 +114,19 @@ curl http://localhost:3001/nonexistent
 ## 🧪 Testing
 
 Run all tests:
+
 ```bash
 cargo test
 ```
 
 Run tests with output:
+
 ```bash
 cargo test -- --nocapture
 ```
 
 Run specific test:
+
 ```bash
 cargo test test_invalid_url
 ```
@@ -159,7 +168,7 @@ Currently, the server port is hardcoded to `3001` in `main.rs`.
 - **[Axum](https://github.com/tokio-rs/axum)** - Web framework
 - **[Tokio](https://tokio.rs/)** - Async runtime
 - **[DashMap](https://github.com/xacrimon/dashmap)** - Concurrent HashMap
-- **[NanoID](https://github.com/viz-rs/nanoid)** - Unique ID generation
+- **[NanoID](https://docs.rs/nanoid/latest/nanoid/)** - Unique ID generation
 - **[Serde](https://serde.rs/)** - Serialization/Deserialization
 - **[Tower](https://github.com/tower-rs/tower)** - Middleware
 - **[Tracing](https://github.com/tokio-rs/tracing)** - Logging
